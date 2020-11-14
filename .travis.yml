@@ -12,11 +12,11 @@ matrix:
         - flake8 xapian_backend.py
         - pylint xapian_backend.py
     - python: 3.8
-      env: DJANGO_VERSION=">=3.0" XAPIAN_VERSION=1.4.14
+      env: DJANGO_VERSION=">=3.0" XAPIAN_VERSION=1.4.17
       dist: xenial
       sudo: true
     - python: 3.7
-      env: DJANGO_VERSION=">=3.0" XAPIAN_VERSION=1.4.14
+      env: DJANGO_VERSION=">=3.0" XAPIAN_VERSION=1.4.17
       dist: xenial
       sudo: true
     - python: 3.7
@@ -47,10 +47,11 @@ addons:
       - g++-4.8
 
 install:
+  - pip install -U pip setuptools
+
   # install Xapian
   - CXX=g++-4.8 ./install_xapian.sh $XAPIAN_VERSION
 
-  - pip install -U pip setuptools
   - pip install -U "Django${DJANGO_VERSION}" six coverage coveralls
 
   # install Django haystack
